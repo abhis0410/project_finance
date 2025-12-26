@@ -1,4 +1,16 @@
 [[pages]]
 path = "pages/about.py"
 name = "About"
-icon = ""
+icon = "👩‍💼"
+
+
+# SECTION - FORM SUBMISSION
+[[pages]]
+name = "Form Submission"
+icon = "🎯"
+is_section = true
+
+[[pages]]
+path = "pages/forms/personal_information.py"
+name = "Personal Information"
+icon = "📝"

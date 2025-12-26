@@ -1,0 +1,4 @@
+[[pages]]
+path = "pages/about.py"
+name = "About"
+icon = ""

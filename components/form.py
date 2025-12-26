@@ -8,7 +8,7 @@ class Form:
         self.title = title
         self.fields = fields
 
-    def render(self) -> dict:
+    def render(self):
         st.subheader(self.title)
 
         data = {}

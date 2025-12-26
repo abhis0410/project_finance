@@ -64,7 +64,6 @@ def main():
             st.error("Please fix the highlighted errors.")
             st.json(errors)
         else:
-            st.success("Personal information submitted successfully")
             return data
 
     return None

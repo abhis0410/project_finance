@@ -1,13 +1,4 @@
 streamlit
 pandas
 numpy
-mftool
-googlesearch-python
-matplotlib
-numpy-financial
-scipy
-pyxirr
-st-pages
-plotly
-google-cloud-storage
 deprecated

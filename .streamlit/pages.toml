@@ -4,13 +4,18 @@ name = "About"
 icon = "👩‍💼"
 
 
-# SECTION - FORM SUBMISSION
 [[pages]]
-name = "Form Submission"
-icon = "🎯"
-is_section = true
+path = 'pages/test.py'
+name = 'Dev Test'
+icon = '🧪'
+
 
 [[pages]]
-path = "pages/forms/personal_information.py"
-name = "Personal Information"
+path = "pages/main.py"
+name = "Details Submission"
+icon = "📝"
+
+[[pages]]
+path = "pages/verify.py"
+name = "Verify & Submit"
 icon = "📝"

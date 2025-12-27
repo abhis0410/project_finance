@@ -17,6 +17,7 @@ class Field:
         name: str,
         label: str,
         field_type: str,
+        key_prefix: str = "",
         required: bool = True,
         default: Any = None,
         options: list[Any] | None = None,
@@ -26,14 +27,15 @@ class Field:
         self.name = name
         self.label = label
         self.field_type = field_type
+        self.key_prefix = key_prefix
         self.required = required
         self.default = default
         self.options = options
         self.validator = validator
         self.help_text = help_text
 
-    def render(self, key_prefix: str) -> Any:
-        key = f"{key_prefix}_{self.name}"
+    def render(self) -> Any:
+        key = f"{self.key_prefix}_{self.name}"
 
         if self.field_type == FieldType.STRING:
             value = st.text_input(self.label, value=self.default or "", key=key)

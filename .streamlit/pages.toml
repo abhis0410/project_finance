@@ -5,22 +5,16 @@ icon = "👩‍💼"
 
 
 [[pages]]
-path = 'pages/test.py'
-name = 'Dev Test'
-icon = '🧪'
-
-
-[[pages]]
 path = "pages/custom_form.py"
 name = "Generate Custom Form"
-icon = "📝"
+icon = "🧩"
 
 [[pages]]
 path = "pages/main.py"
 name = "Fill Form"
-icon = "📝"
+icon = "✍️"
 
 [[pages]]
 path = "pages/verify.py"
 name = "Verify & Submit"
-icon = "📝"
+icon = "✅"

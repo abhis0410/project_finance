@@ -97,8 +97,6 @@ class EmployerInformation:
 
         index = 0
         while index < total_entries:
-            print("Total Entries:", total_entries)
-            print("Index:", index)
             is_manual_entry = index < self.manual_entry_count
             self._process(index, is_manual_entry)
             index += 1

@@ -1,4 +1,5 @@
 import streamlit as st
+from streamlit.runtime.uploaded_file_manager import UploadedFile
 
 
 def render_dict(d: dict, title: str, level: int = 0):
@@ -13,7 +14,6 @@ def render_dict(d: dict, title: str, level: int = 0):
             st.markdown(title)
 
         for key, value in d.items():
-            print(key, type(value))
             if type(value) is dict:
                 render_dict(value, title=key.replace('_', ' ').title(), level=level + 1)
                 continue
@@ -22,4 +22,8 @@ def render_dict(d: dict, title: str, level: int = 0):
             with col_key:
                 st.markdown(f"**{key.replace('_', ' ').title()}**")
             with col_val:
+                if type(value) is UploadedFile:
+                    st.write("Uploaded File....")
+                    continue
+
                 st.write(value)

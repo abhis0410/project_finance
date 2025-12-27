@@ -4,6 +4,8 @@ from components.personal_information import main as personal_information_form
 from components.employment_information import main as employer_information_form
 from components.final_response import FinalResponse
 
+from utils.employer_information import EmployerInformation
+
 
 def render_personal_information(final_response: FinalResponse):
     # Render the form
@@ -36,14 +38,7 @@ def render_employer_information(final_response: FinalResponse):
     if not submitted:
         return
 
-
-    index = 0
-    for i in range(manual_entry_count + form_entry_count):
-        is_manual_entry = index < manual_entry_count
-        data = employer_information_form(index, is_manual_entry=is_manual_entry)
-        if data is not None:
-            final_response.employer_information.append(data)
-            index += 1
+    data = employer_information_form()
 
 
 def main():
@@ -52,12 +47,13 @@ def main():
 
     final_response: FinalResponse = st.session_state.final_response
 
+    x = """
     render_personal_information(final_response)
     st.divider()
 
     if final_response.personal_information is None:
         return
-
+    """
     render_employer_information(final_response)
     st.divider()
 

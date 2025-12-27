@@ -74,6 +74,8 @@ def employer_information_form_file_upload(index: int):
     )
     return form.render(f"{index}")
 
+
+
 def main(index: int=0, is_manual_entry: bool=True):
     st.title(f"Employer Information {index + 1}")
 

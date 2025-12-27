@@ -1,7 +1,8 @@
 from components.employer_information import EmployerInformation
 from components.personal_information import personal_information_form
 import streamlit as st
-from typing import Dict, Optional
+from typing import Dict, Optional, Any
+
 
 class FinalResponse:
 
@@ -15,6 +16,7 @@ class FinalResponse:
 
         self.personal_form = None
         self.employer_form: Optional[Dict] = None
+        self.is_rendered = False
 
 
     def _populate_personal_information(self):
@@ -39,7 +41,7 @@ class FinalResponse:
                 d[field.name] = field.render()
         return d
 
-    def render_form(self):
+    def render_form(self) -> dict[Any, Any] | None:
         final_data = {}
 
         # Personal Information
@@ -56,6 +58,7 @@ class FinalResponse:
 
 
         if st.button("Submit"):
+            self.is_rendered = True
             return final_data
 
         return None

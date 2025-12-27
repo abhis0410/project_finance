@@ -8,8 +8,15 @@ def render_final_response():
         return
 
     final_response: FinalResponse = st.session_state.final_response
-    result = final_response.render_form()
 
+    if final_response.is_rendered:
+        st.error("Final response form has already been submitted")
+        with st.spinner("Redirecting to verification page..."):
+            time.sleep(2)
+            st.switch_page("pages/verify.py")
+
+
+    result = final_response.render_form()
     if result is None:
         return
 

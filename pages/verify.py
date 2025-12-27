@@ -3,6 +3,7 @@
 
 import streamlit as st
 from utils.functions import render_dict
+from components.final_submission import main as final_submission_component
 
 
 def render_verification_page():
@@ -17,6 +18,7 @@ def render_verification_page():
     st.markdown("If everything looks good, click the button below to confirm and submit your details")
     if st.button("Confirm and Submit"):
         st.success("Your details have been submitted successfully!")
+        final_submission_component(final_data)
         # Here you can add code to process the final_data as needed
 
 

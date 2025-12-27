@@ -16,6 +16,8 @@ def render_final_response():
             if submitted:
                 final_response = FinalResponse(manual_entry_count, file_upload_count)
                 st.session_state['final_response'] = final_response
+            else:
+                return
 
 
     final_response: FinalResponse = st.session_state.final_response

@@ -1,6 +1,5 @@
 from components.employer_information import EmployerInformation
 from components.personal_information import personal_information_form
-from typing import Optional
 
 class FinalResponse:
 
@@ -18,7 +17,7 @@ class FinalResponse:
     def _add_personal_information(self):
         fields = personal_information_form("personal_info")
 
-        self.all_fields.append(*fields)
+        self.all_fields.extend(fields)
 
     def _add_employer_information(self):
         fields = EmployerInformation(
@@ -26,7 +25,7 @@ class FinalResponse:
             self.file_upload_count
         ).get_all_fields()
 
-        self.all_fields.append(*fields)
+        self.all_fields.extend(fields)
 
     def clear(self):
         self.all_fields = []

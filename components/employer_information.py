@@ -76,6 +76,7 @@ class EmployerInformation:
         form = FileInput(
             name=f"t4_slip_{index}",
             label=f"Upload T4 Slip for Employer",
+            key_prefix=f"{index}",
             allowed_types=["pdf"],
             required=True,
             help_text="Please upload a PDF copy of your T4 slip.",
@@ -89,20 +90,22 @@ class EmployerInformation:
 
         if is_manual_entry:
             all_fields = self._get_manual_entry(index)
+            self.employer_fields.extend(all_fields)
         else:
             all_fields = self._get_file_upload_entry(index)
-
-        return all_fields
+            self.employer_fields.append(all_fields)
 
 
     def get_all_fields(self):
         total_entries = self.manual_entry_count + self.file_upload_count
 
         index = 0
-        while len(self.employer_fields) != total_entries:
+        while index < total_entries:
+            print("Total Entries:", total_entries)
+            print("Current Fields Length:", len(self.employer_fields))
+            print("Index:", index)
             is_manual_entry = index < self.manual_entry_count
-            field = self._process(index, is_manual_entry)
-            self.employer_fields.append((field, is_manual_entry))
+            self._process(index, is_manual_entry)
             index += 1
 
 

@@ -28,23 +28,25 @@ class FileInput:
     """
 
     def __init__(
-        self,
-        name: str,
-        label: str,
-        allowed_types: List[str],
-        required: bool = False,
-        help_text: Optional[str] = None,
-        multiple: bool = False,
+            self,
+            name: str,
+            label: str,
+            key_prefix: str,
+            allowed_types: List[str],
+            required: bool = False,
+            help_text: Optional[str] = None,
+            multiple: bool = False,
     ):
         self.name = name
         self.label = label
+        self.key_prefix = key_prefix
         self.allowed_types = allowed_types
         self.required = required
         self.help_text = help_text
         self.multiple = multiple
 
-    def render(self, key_prefix: str):
-        key = f"{key_prefix}_{self.name}"
+    def render(self):
+        key = f"{self.key_prefix}_{self.name}"
 
         files = st.file_uploader(
             self.label,

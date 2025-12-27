@@ -1,8 +1,9 @@
 from datetime import date
 from utils.field import Field, FieldType
+from typing import List
 
 
-def personal_information_form(key_prefix: str):
+def personal_information_form(key_prefix: str) -> List[Field]:
     fields = [
         Field("first_name", "First name", FieldType.STRING, key_prefix),
         Field("last_name", "Last name", FieldType.STRING, key_prefix),

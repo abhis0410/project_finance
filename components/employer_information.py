@@ -6,7 +6,7 @@ class EmployerInformation:
     def __init__(self, manual_entry_count, file_upload_count):
         self.manual_entry_count = manual_entry_count
         self.file_upload_count = file_upload_count
-        self.employer_fields = []
+        self.employer_fields = {}
 
 
     @staticmethod
@@ -84,15 +84,13 @@ class EmployerInformation:
 
 
     def _process(self, index, is_manual_entry: bool):
-        st.title(f"Employer Information {index + 1}")
-
+        key = f"Employer_Information_{index+1}"
         if is_manual_entry:
             all_fields = self._get_manual_entry(index)
-            self.employer_fields.extend(all_fields)
+            self.employer_fields[key] = all_fields
         else:
             all_fields = self._get_file_upload_entry(index)
-            self.employer_fields.append(all_fields)
-
+            self.employer_fields[key] = [all_fields]
 
     def get_all_fields(self):
         total_entries = self.manual_entry_count + self.file_upload_count

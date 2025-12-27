@@ -8,8 +8,6 @@ class EmployerInformation:
         self.file_upload_count = file_upload_count
         self.employer_fields = []
 
-        print("Class Initialized")
-
 
     @staticmethod
     def _get_manual_entry(index: int):
@@ -102,7 +100,6 @@ class EmployerInformation:
         index = 0
         while index < total_entries:
             print("Total Entries:", total_entries)
-            print("Current Fields Length:", len(self.employer_fields))
             print("Index:", index)
             is_manual_entry = index < self.manual_entry_count
             self._process(index, is_manual_entry)

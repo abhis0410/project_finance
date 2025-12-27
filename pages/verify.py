@@ -3,7 +3,7 @@
 
 import streamlit as st
 from utils.functions import render_dict
-from components.final_submission import main as final_submission_component
+from src.final_submission import main as final_submission_component
 import time
 
 def render_verification_page():

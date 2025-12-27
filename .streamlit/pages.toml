@@ -11,8 +11,13 @@ icon = '🧪'
 
 
 [[pages]]
+path = "pages/custom_form.py"
+name = "Generate Custom Form"
+icon = "📝"
+
+[[pages]]
 path = "pages/main.py"
-name = "Fill in Details"
+name = "Fill Form"
 icon = "📝"
 
 [[pages]]

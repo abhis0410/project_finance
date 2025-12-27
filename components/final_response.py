@@ -30,26 +30,35 @@ class FinalResponse:
 
         self.employer_form = form
 
+    @staticmethod
+    def _render_form(title: str, form: list):
+        d = {}
+        with st.container(border=True):
+            st.title(title.replace("_", " ").title())
+            for field in form:
+                d[field.name] = field.render()
+        return d
 
     def render_form(self):
+        final_data = {}
+
         # Personal Information
         self._populate_personal_information()
 
-        with st.container(border=True):
-            st.title("Personal Information")
-            for field in self.personal_form:
-                field.render()
+        final_data['personal_information'] = self._render_form(title="personal_information", form=self.personal_form)
 
         # Main Employer Information
         self._populate_employer_information()
+
+        final_data['employer_information'] = {}
         for title, form in self.employer_form.items():
-            with st.container(border=True):
-                st.title(title.replace("_", " ").title())
-                for field in form:
-                    field.render()
+            final_data['employer_information'][title] = self._render_form(title=title, form=form)
 
 
+        if st.button("Submit"):
+            return final_data
 
+        return None
 
     def clear(self):
         self.personal_form = None

@@ -1,7 +1,7 @@
 import streamlit as st
 from datetime import date
-from components.field import Field, FieldType
-from components.form import Form
+from utils.field import Field, FieldType
+from utils.form import Form
 
 
 def personal_information_form():
@@ -56,10 +56,9 @@ def personal_information_form():
 
 def main():
     st.title("Tax Information Form")
-
     data, errors = personal_information_form()
 
-    if st.button("Submit"):
+    if st.button("Submit", key="submit_personal_info"):
         if errors:
             st.error("Please fix the highlighted errors.")
             st.json(errors)

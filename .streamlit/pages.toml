@@ -12,7 +12,7 @@ icon = '🧪'
 
 [[pages]]
 path = "pages/main.py"
-name = "Details Submission"
+name = "Fill in Details"
 icon = "📝"
 
 [[pages]]

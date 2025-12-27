@@ -1,5 +1,5 @@
 import streamlit as st
-from components.field import Field
+from utils.field import Field
 
 
 class Form:

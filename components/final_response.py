@@ -1,19 +1,40 @@
-from utils.employer_information import EmployerInformation
+from components.employer_information import EmployerInformation
+from components.personal_information import personal_information_form
+from typing import Optional
 
 class FinalResponse:
 
-    def __init__(self):
-        self.personal_information = None
-        self.employer_information = None
+    def __init__(
+            self,
+            manual_entry_count: int,
+            file_upload_count: int
+    ):
+        self.manual_entry_count = manual_entry_count
+        self.file_upload_count = file_upload_count
 
+        self.all_fields = []
+
+
+    def _add_personal_information(self):
+        fields = personal_information_form("personal_info")
+
+        self.all_fields.append(*fields)
+
+    def _add_employer_information(self):
+        fields = EmployerInformation(
+            self.manual_entry_count,
+            self.file_upload_count
+        ).get_all_fields()
+
+        self.all_fields.append(*fields)
 
     def clear(self):
-        self.personal_information = None
-        self.employer_information = None
+        self.all_fields = []
 
 
-    def ready_for_verification(self) -> bool:
-        # TODO: Add more checks as needed
-        check = self.personal_information is not None
-        check = check and self.employer_information is not None
-        return check
+    def render_form(self):
+        self._add_personal_information()
+        self._add_employer_information()
+
+        for field in self.all_fields:
+            field.render()

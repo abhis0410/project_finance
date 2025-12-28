@@ -8,3 +8,8 @@ class URL:
 
 class PaymentConstants:
     EMAIL = 'yashu6256@gmail.com'
+
+
+
+class Strings:
+    RentalInformationConfigDisclaimer = "Only fill if you had interact the rent, lease or any rental agreement. Avoid cash payments. If rent is partially(HALF) interacted kindly fill for receiving refund."

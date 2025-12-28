@@ -2,7 +2,7 @@ import streamlit as st
 from typing import Any, Callable, Optional
 
 
-class FieldType:
+class StreamlitFieldType:
     STRING = "string"
     INT = "int"
     DOUBLE = "double"
@@ -11,7 +11,7 @@ class FieldType:
     BOOLEAN = "boolean"
 
 
-class Field:
+class StreamlitField:
     def __init__(
         self,
         name: str,

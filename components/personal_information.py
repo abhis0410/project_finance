@@ -1,51 +1,51 @@
 from datetime import date
-from utils.field import Field, FieldType
+from utils.field import StreamlitField, StreamlitFieldType
 from typing import List
 
 
-def personal_information_form(key_prefix: str) -> List[Field]:
-    fields = [
-        Field("first_name", "First name", FieldType.STRING, key_prefix),
-        Field("last_name", "Last name", FieldType.STRING, key_prefix),
+def personal_information_form(key_prefix: str) -> List[StreamlitField]:
+    streamlit_fields = [
+        StreamlitField("first_name", "First name", StreamlitFieldType.STRING, key_prefix),
+        StreamlitField("last_name", "Last name", StreamlitFieldType.STRING, key_prefix),
 
-        Field(
+        StreamlitField(
             "sin",
             "Social Insurance Number",
-            FieldType.STRING,
+            StreamlitFieldType.STRING,
             key_prefix,
             help_text="9-digit number",
         ),
 
-        Field(
+        StreamlitField(
             "date_of_birth",
             "Date of birth",
-            FieldType.DATE,
+            StreamlitFieldType.DATE,
             key_prefix,
             default=date(1990, 1, 1),
         ),
 
-        Field(
+        StreamlitField(
             "province_2025",
             "Province of residence on December 31, 2025",
-            FieldType.STRING,
+            StreamlitFieldType.STRING,
             key_prefix,
         ),
 
-        Field(
+        StreamlitField(
             "marital_status_2025",
             "Marital status on December 31, 2025",
-            FieldType.SELECT,
+            StreamlitFieldType.SELECT,
             key_prefix,
             options=["Single", "Married", "Common-law", "Divorced", "Widowed"],
         ),
 
-        Field("street", "Street address", FieldType.STRING, key_prefix),
-        Field("city", "City", FieldType.STRING, key_prefix),
-        Field("address_province", "Province", FieldType.STRING, key_prefix),
-        Field("postal_code", "Postal code", FieldType.STRING, key_prefix),
+        StreamlitField("street", "Street address", StreamlitFieldType.STRING, key_prefix),
+        StreamlitField("city", "City", StreamlitFieldType.STRING, key_prefix),
+        StreamlitField("address_province", "Province", StreamlitFieldType.STRING, key_prefix),
+        StreamlitField("postal_code", "Postal code", StreamlitFieldType.STRING, key_prefix),
 
-        Field("home_phone", "Home phone number", FieldType.STRING, key_prefix, required=False),
-        Field("email", "Email address", FieldType.STRING, key_prefix),
+        StreamlitField("home_phone", "Home phone number", StreamlitFieldType.STRING, key_prefix, required=False),
+        StreamlitField("email", "Email address", StreamlitFieldType.STRING, key_prefix),
     ]
 
-    return fields
+    return streamlit_fields

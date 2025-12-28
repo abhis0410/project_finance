@@ -22,10 +22,11 @@ def main():
     ---
 
     I look forward to putting my experience to work for you!  
-    Would you like me to elaborate on the specific types of tax services I offer?
     """
-
     st.markdown(about_content)
+
+    if st.button("Lets Get Started"):
+        st.switch_page("pages/custom_form.py")
 
 
 

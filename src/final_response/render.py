@@ -38,7 +38,6 @@ class FinalForm:
 
         return d
 
-
     def _render_personal_information(self):
         conf = self.final_form_response.personal_information_response
         title = "personal_information"
@@ -79,10 +78,39 @@ class FinalForm:
     def _render_additional_income_information(self):
         pass
 
+    def _render_tuition_credits_information(self):
+        meta_inputs = self.custom_form_response.tuition_config
+        conf = self.final_form_response.tuition_credits_information_response
+        conf.custom_init(
+            mode=meta_inputs.mode.value
+        )
+        title = "tuition_credits_information"
+        if meta_inputs.mode.value == "manual":
+
+            d = self.__render_single_form(
+                title,
+                conf.response_manual.get_streamlit_fields(title)
+            )
+            conf.response_manual.setter(**d)
+
+        elif meta_inputs.mode.value == "upload":
+            title = "tuition_credits_information_uploaded_entry"
+            d = self.__render_file_upload_form(
+                title,
+                conf.response_uploaded.get_streamlit_fields(title)
+            )
+            conf.response_uploaded.setter(**d)
+
+    def _render_rental_information(self):
+        pass
+
     def render(self):
 
         self._render_personal_information()
         self._render_employment_information()
+        self._render_additional_income_information()
+        self._render_tuition_credits_information()
+        self._render_rental_information()
 
         if st.button("Submit"):
             self.final_form_response.is_rendered = True

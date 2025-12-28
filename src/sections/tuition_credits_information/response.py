@@ -84,7 +84,6 @@ class TuitionCreditsUploadedEntryResponse:
     def __init__(self):
         self.context = None
         self.response = None
-        pass
 
     def setter(self, **kwargs):
         for key, value in kwargs.items():

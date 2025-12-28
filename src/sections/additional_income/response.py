@@ -6,11 +6,12 @@ from utils.file_input import FileInput
 
 
 class AdditionalIncomeUploadedResponse:
-    context: str
-    response: UploadedFile
+    context: str | None
+    response: UploadedFile | None
 
     def __init__(self):
-        pass
+        self.context = None
+        self.response = None
 
     def setter(self, **kwargs):
         for key, value in kwargs.items():

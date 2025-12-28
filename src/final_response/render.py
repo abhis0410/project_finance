@@ -33,8 +33,6 @@ class FinalForm:
         with st.container(border=True):
             st.subheader(title.replace("_", " ").title())
             context, response = field.render()
-            print("context: ", context)
-            print("response: ", response)
             d['context'] = context
             d['response'] = response
 

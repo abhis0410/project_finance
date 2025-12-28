@@ -48,11 +48,27 @@ class CustomForm:
         )
         self.config.employment_config = conf
 
-    # @staticmethod
-    # def _render_additional_income_section():
-    #     additional_income = st.checkbox("I have additional income to report")
-    #     return additional_income
-    #
+    def _render_additional_income_section(self):
+        conf = self.config.additional_income_config
+
+        st.subheader(conf.title)
+        st.info(conf.disclaimer)
+
+        enabled = st.checkbox(
+            conf.enabled.title
+        )
+
+        income_count = None
+        if enabled:
+            income_count = st.number_input(
+                conf.income_count.title,
+                min_value=conf.income_count.min_value,
+                max_value=conf.income_count.max_value,
+                step=1,
+                key="income_count",
+            )
+
+        conf.setter(enabled=enabled, income_count=income_count)
 
     def _render_tuition_section(self):
         conf = self.config.tuition_config
@@ -84,7 +100,6 @@ class CustomForm:
         st.subheader(conf.title)
         st.info(conf.disclaimer)
 
-        conf.setter(enabled=True)
         enabled = st.checkbox(
             conf.enabled.title
         )
@@ -100,13 +115,6 @@ class CustomForm:
             )
 
         conf.setter(enabled=enabled, address_count=address_count)
-    #
-    # @staticmethod
-    # def _render_hst_section():
-    #     hst_message = st.checkbox(
-    #         "I want to leave a message for HST filing (separate charges)"
-    #     )
-    #     return hst_message
 
     def render(self) -> CustomFormResponse | None:
         st.header(self.title)
@@ -117,23 +125,13 @@ class CustomForm:
             self._render_employment_section()
 
         with st.container(border=True):
+            self._render_additional_income_section()
+
+        with st.container(border=True):
             self._render_tuition_section()
 
         with st.container(border=True):
             self._render_rent_info_section()
-
-        # additional_income = self._section(
-        #     "Additional Income",
-        #     self._render_additional_income_section,
-        # )
-        #
-
-        #
-
-        # hst_message = self._section(
-        #     "HST Filing",
-        #     self._render_hst_section,
-        # )
 
         if st.button("Continue"):
             return self.config

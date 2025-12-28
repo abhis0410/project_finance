@@ -76,15 +76,8 @@ class FinalForm:
             x.setter(**d)
             index += 1
 
-        # for i in range(meta_inputs.upload_count.value):
-        #     title = f"employer_upload_{i+1}"
-        #     d = self.__render_single_form(
-        #         title,
-        #         conf.get_streamlit_fields(title)
-        #     )
-        #     conf.setter(title, **d
-
-
+    def _render_additional_income_information(self):
+        pass
 
     def render(self):
 

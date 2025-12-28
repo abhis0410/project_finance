@@ -1,21 +1,20 @@
-
-
-
 import streamlit as st
 
 from src.final_response.response import FinalFormResponse
+from src.post_submission_flow import post_submission_flow
 from utils.functions import render_dict
-from src.final_submission import main as final_submission_component
 import time
 
 from utils.switch_page import switch_to_main, switch_to_custom_form
 
 
 def render_verification_page(final_form_response: FinalFormResponse):
+    d = final_form_response.get_dict()
+    render_dict(d, "")
 
     st.markdown("###### If everything looks good, click the button below to confirm and submit your details")
     if st.button("Confirm and Submit"):
-        # final_submission_component(final_data)
+        post_submission_flow(final_form_response)
 
         with st.spinner("Processing your submission..."):
             time.sleep(3)

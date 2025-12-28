@@ -12,8 +12,8 @@ class FinalFormResponse:
     additional_income_information_response: AdditionalIncomeResponse
     rental_information_response: RentalInformationResponse
 
-
     is_rendered: bool
+    
     def __init__(self):
         self.personal_information_response = PersonalInformationResponse()
         self.employment_information_response = EmploymentResponse()
@@ -22,3 +22,12 @@ class FinalFormResponse:
         self.rental_information_response = RentalInformationResponse()
 
         self.is_rendered = False
+
+    def get_dict(self) -> dict:
+        return {
+            "personal_information_response": self.personal_information_response.get_all(),
+            "employment_information_response": self.employment_information_response.get_all(),
+            "tuition_credits_information_response": self.tuition_credits_information_response.get_all(),
+            "additional_income_information_response": self.additional_income_information_response.get_all(),
+            "rental_information_response": self.rental_information_response.get_all(),
+        }

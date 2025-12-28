@@ -33,6 +33,8 @@ class FinalForm:
         with st.container(border=True):
             st.subheader(title.replace("_", " ").title())
             context, response = field.render()
+            print("context: ", context)
+            print("response: ", response)
             d['context'] = context
             d['response'] = response
 
@@ -108,22 +110,37 @@ class FinalForm:
         if meta_inputs.mode.value == "manual":
             d = self.__render_single_form(
                 title,
-                conf.response_manual.get_streamlit_fields(title)
+                conf.manual_response.get_streamlit_fields(title)
             )
-            conf.response_manual.setter(**d)
+            conf.manual_response.setter(**d)
 
         elif meta_inputs.mode.value == "upload":
             d = self.__render_file_upload_form(
                 title,
-                conf.response_uploaded.get_streamlit_fields(title)
+                conf.uploaded_response.get_streamlit_fields(title)
             )
-            conf.response_uploaded.setter(**d)
+            conf.uploaded_response.setter(**d)
 
     def _render_rental_information(self):
-        pass
+        meta_inputs = self.custom_form_response.rental_config
+        if not meta_inputs.enabled.value:
+            return
+        conf = self.final_form_response.rental_information_response
+        conf.custom_init(
+            meta_inputs.address_count.value
+        )
+
+        index = 0
+        for x in conf.manual_response:
+            title = f"rental_information_{index+1}"
+            d = self.__render_single_form(
+                title,
+                x.get_streamlit_fields(title)
+            )
+            x.setter(**d)
+            index += 1
 
     def render(self):
-
         self._render_personal_information()
         self._render_employment_information()
         self._render_additional_income_information()

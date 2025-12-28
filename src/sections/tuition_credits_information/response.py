@@ -78,16 +78,19 @@ class TuitionCreditsManualEntryResponse:
 
 
 class TuitionCreditsUploadedEntryResponse:
-    context: str
-    response: UploadedFile
+    context: str | None
+    response: UploadedFile | None
 
     def __init__(self):
+        self.context = None
+        self.response = None
         pass
 
     def setter(self, **kwargs):
         for key, value in kwargs.items():
             if hasattr(self, key):
-                getattr(self, key).set_value(value)
+                setattr(self, key, value)
+                continue
 
     @staticmethod
     def get_streamlit_fields(key_prefix: str) -> FileInput:
@@ -106,11 +109,13 @@ class TuitionCreditsUploadedEntryResponse:
 
 
 class TuitionCreditsInformationResponse:
-    response_manual: TuitionCreditsManualEntryResponse
-    response_uploaded: TuitionCreditsUploadedEntryResponse
+    manual_response: TuitionCreditsManualEntryResponse | None
+    uploaded_response: TuitionCreditsUploadedEntryResponse | None
 
     def custom_init(self, mode: str):
         if mode == "manual":
-            self.response_manual = TuitionCreditsManualEntryResponse()
+            self.manual_response = TuitionCreditsManualEntryResponse()
+            self.uploaded_response = None
         elif mode == "upload":
-            self.response_uploaded = TuitionCreditsUploadedEntryResponse()
+            self.uploaded_response = TuitionCreditsUploadedEntryResponse()
+            self.manual_response = None

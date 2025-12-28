@@ -15,8 +15,7 @@ def main():
 
     if custom_form_response:
         st.session_state["custom_form_response"] = custom_form_response
-        # st.switch_page("pages/main.py")
-        st.switch_page("pages/test.py")
+        st.switch_page("pages/main.py")
 
 if __name__ == "__main__":
     main()

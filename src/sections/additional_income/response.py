@@ -2,22 +2,19 @@ from typing import List
 
 from streamlit.runtime.uploaded_file_manager import UploadedFile
 
+from src.sections.response_template import UploadedEntryResponse
 from utils.file_input import FileInput
 
 
-class AdditionalIncomeUploadedResponse:
+class AdditionalIncomeUploadedResponse(UploadedEntryResponse):
     context: str | None
     response: UploadedFile | None
 
     def __init__(self):
+        super().__init__()
         self.context = None
         self.response = None
 
-    def setter(self, **kwargs):
-        for key, value in kwargs.items():
-            if hasattr(self, key):
-                setattr(self, key, value)
-                continue
 
     @staticmethod
     def get_streamlit_fields(key_prefix: str) -> FileInput:

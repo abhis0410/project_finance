@@ -1,12 +1,12 @@
 from streamlit.runtime.uploaded_file_manager import UploadedFile
 
 from src.field_value import StringField, IntField, DoubleField
-from utils.constants import Strings
+from src.sections.response_template import ManualEntryResponse, UploadedEntryResponse
 from utils.streamlit_field import StreamlitField, StreamlitFieldType
 from utils.file_input import FileInput
 
 
-class TuitionCreditsManualEntryResponse:
+class TuitionCreditsManualEntryResponse(ManualEntryResponse):
     institution_name: StringField
     institution_address: StringField
     months_full_time: IntField
@@ -14,6 +14,7 @@ class TuitionCreditsManualEntryResponse:
     tuition_fees_paid: DoubleField
 
     def __init__(self):
+        super().__init__()
         self.institution_name = StringField(
             title="Name of Educational institution",
             required=True,
@@ -35,11 +36,6 @@ class TuitionCreditsManualEntryResponse:
             title="Tuition fees paid ($)",
             required=True,
         )
-
-    def setter(self, **kwargs):
-        for key, value in kwargs.items():
-            if hasattr(self, key):
-                getattr(self, key).set_value(value)
 
     def get_streamlit_fields(self, key_prefix: str) -> dict[str, StreamlitField]:
         fields = {
@@ -77,19 +73,15 @@ class TuitionCreditsManualEntryResponse:
         return fields
 
 
-class TuitionCreditsUploadedEntryResponse:
+class TuitionCreditsUploadedEntryResponse(UploadedEntryResponse):
     context: str | None
     response: UploadedFile | None
 
     def __init__(self):
+        super().__init__()
         self.context = None
         self.response = None
 
-    def setter(self, **kwargs):
-        for key, value in kwargs.items():
-            if hasattr(self, key):
-                setattr(self, key, value)
-                continue
 
     @staticmethod
     def get_streamlit_fields(key_prefix: str) -> FileInput:

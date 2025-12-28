@@ -1,15 +1,17 @@
 from typing import List
 
 from src.field_value import StringField, IntField, DoubleField
+from src.sections.response_template import ManualEntryResponse
 from utils.streamlit_field import StreamlitFieldType, StreamlitField
 
 
-class RentalInformationManualEntryResponse:
+class RentalInformationManualEntryResponse(ManualEntryResponse):
     address: StringField
     months_stayed: IntField
     rent_per_month: DoubleField
 
     def __init__(self):
+        super().__init__()
         self.address = StringField(
             title="Rental Property Address",
             required=True,
@@ -24,11 +26,6 @@ class RentalInformationManualEntryResponse:
             title="Rent Paid Per Month ($)",
             required=True,
         )
-
-    def setter(self, **kwargs):
-        for key, value in kwargs.items():
-            if hasattr(self, key):
-                getattr(self, key).set_value(value)
 
     def get_streamlit_fields(self, key_prefix: str) -> dict[str, StreamlitField]:
         fields = {

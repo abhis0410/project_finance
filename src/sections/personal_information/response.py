@@ -1,11 +1,12 @@
 from datetime import date
-from typing import Dict, Any
+from typing import Any
 
 from src.field_value import StringField
+from src.sections.response_template import ManualEntryResponse
 from utils.streamlit_field import StreamlitField, StreamlitFieldType
 
 
-class PersonalInformationResponse:
+class PersonalInformationResponse(ManualEntryResponse):
     first_name: StringField
     last_name: StringField
     sin: StringField
@@ -20,6 +21,7 @@ class PersonalInformationResponse:
     email: StringField
 
     def __init__(self):
+        super().__init__()
         self.first_name = StringField(title="First name", required=True)
         self.last_name = StringField(title="Last name", required=True)
         self.sin = StringField(title="Social Insurance Number", required=True)
@@ -39,10 +41,6 @@ class PersonalInformationResponse:
         self.home_phone = StringField(title="Home phone number", required=False)
         self.email = StringField(title="Email address", required=True)
 
-    def setter(self, **kwargs):
-        for key, value in kwargs.items():
-            if hasattr(self, key):
-                getattr(self, key).set_value(value)
 
     def get_streamlit_fields(self, key_prefix: str) -> dict[Any, StreamlitField]:
         fields = {

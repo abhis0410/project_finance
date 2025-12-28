@@ -1,6 +1,7 @@
 from streamlit.runtime.uploaded_file_manager import UploadedFile
 
 from src.field_value import StringField, DoubleField
+from src.sections.response_template import ManualEntryResponse, UploadedEntryResponse
 from utils.constants import Strings
 from utils.streamlit_field import StreamlitField, StreamlitFieldType
 from typing import List, Any
@@ -8,7 +9,7 @@ from typing import List, Any
 from utils.file_input import FileInput
 
 
-class EmployerManualEntryResponse:
+class EmployerManualEntryResponse(ManualEntryResponse):
     employer_name: StringField
     employer_address: StringField
     employment_income: DoubleField
@@ -19,6 +20,7 @@ class EmployerManualEntryResponse:
 
 
     def __init__(self):
+        super().__init__()
         self.employer_name: StringField = StringField(
             title="Name of Employer",
             required=True,
@@ -54,10 +56,6 @@ class EmployerManualEntryResponse:
             required=False,
         )
 
-    def setter(self, **kwargs):
-        for key, value in kwargs.items():
-            if hasattr(self, key):
-                getattr(self, key).set_value(value)
 
     def get_streamlit_fields(self, key_prefix: str) -> dict[Any, Any]:
         fields = {
@@ -72,19 +70,15 @@ class EmployerManualEntryResponse:
         return fields
 
 
-class EmployerUploadedEntryResponse:
+class EmployerUploadedEntryResponse(UploadedEntryResponse):
     context: str | None
     response: UploadedFile | None
 
     def __init__(self):
+        super().__init__()
         self.context = None
         self.response = None
 
-    def setter(self, **kwargs):
-        for key, value in kwargs.items():
-            if hasattr(self, key):
-                setattr(self, key, value)
-                continue
 
     @staticmethod
     def get_streamlit_fields(key_prefix: str) -> FileInput:

@@ -2,6 +2,7 @@ import streamlit as st
 
 from src.custom_form.render import CustomForm
 from src.custom_form.response import CustomFormResponse
+from utils.switch_page import switch_to_main
 
 
 def main():
@@ -15,7 +16,7 @@ def main():
 
     if custom_form_response:
         st.session_state["custom_form_response"] = custom_form_response
-        st.switch_page("pages/main.py")
+        switch_to_main("Generating Final Form...")
 
 if __name__ == "__main__":
     main()

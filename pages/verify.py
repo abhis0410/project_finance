@@ -2,11 +2,19 @@
 
 
 import streamlit as st
+
+from src.final_response.response import FinalFormResponse
 from utils.functions import render_dict
 from src.final_submission import main as final_submission_component
 import time
 
-def render_verification_page():
+from utils.switch_page import switch_to_main, switch_to_custom_form
+
+
+def render_verification_page(final_form_response: FinalFormResponse):
+
+
+
     final_data = st.session_state['final_data']
 
     render_dict(final_data, "")
@@ -27,12 +35,19 @@ def render_verification_page():
 
 
 def main():
-    st.title("Final Verification Page")
-    if 'final_data' not in st.session_state:
-        st.error("No data available for verification. Please complete the previous steps.")
+    if 'custom_form_response' not in st.session_state:
+        st.error("Please generate custom form first.")
+        switch_to_custom_form()
         return
 
-    render_verification_page()
+    if 'final_form_response' not in st.session_state:
+        st.error("No final form response found. Please complete the previous steps.")
+        switch_to_main()
+        return
+
+    final_form_response: FinalFormResponse = st.session_state.final_form_response
+
+    render_verification_page(final_form_response)
 
 
 if __name__ == "__main__":

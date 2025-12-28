@@ -3,16 +3,8 @@ from src.final_response.response import FinalFormResponse
 
 def print_manual_fields(conf, title):
     print("-----", title, "-----")
-    for key in conf.__annotations__.keys():
-        if hasattr(conf, key):
-            try:
-                value = getattr(conf, key).value
-            except Exception as e:
-                e = '1'
-                value = getattr(conf, key)
-            print(key, ":", value)
-        else:
-            print(key, ": Not Found")
+    d = conf.get_all()
+    print(d)
     print("-------------------------")
 
 

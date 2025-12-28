@@ -1,14 +1,7 @@
+from src.final_response.response import FinalFormResponse
 
 
-
-
-
-
-
-
-
-
-
-def main(final_data):
+def main(response: FinalFormResponse):
+    print("HERE")
     pass
 

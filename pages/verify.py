@@ -20,6 +20,9 @@ def render_verification_page(final_form_response: FinalFormResponse):
             time.sleep(3)
 
         st.success("Your details have been submitted successfully!")
+        return True
+
+    return False
 
 
 def main():
@@ -41,7 +44,12 @@ def main():
     )
 
     with st.container(border=True):
-        render_verification_page(final_form_response)
+        flag = render_verification_page(final_form_response)
+
+        flag = False # TODO: Disable clearing session state for testing purposes
+        if flag:
+            st.session_state.pop('custom_form_response', None)
+            st.session_state.pop('final_form_response', None)
 
 
 if __name__ == "__main__":

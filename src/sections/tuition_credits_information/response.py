@@ -110,3 +110,12 @@ class TuitionCreditsInformationResponse:
         elif mode == "upload":
             self.uploaded_response = TuitionCreditsUploadedEntryResponse()
             self.manual_response = None
+
+    def get_all(self) -> dict:
+        if self.manual_response:
+            return self.manual_response.get_all()
+
+        if self.uploaded_response:
+            return self.uploaded_response.get_all()
+
+        return {}

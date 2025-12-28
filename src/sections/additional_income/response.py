@@ -37,3 +37,11 @@ class AdditionalIncomeResponse:
 
     def custom_init(self, upload_entry_count: int):
         self.uploaded_response = [AdditionalIncomeUploadedResponse() for _ in range(upload_entry_count)]
+
+    def get_all(self) -> dict:
+        d = {}
+        for i, entry in enumerate(self.uploaded_response):
+            key = f"{i + 1}"
+            d[key] = entry.get_all()
+
+        return d

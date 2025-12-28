@@ -56,3 +56,11 @@ class RentalInformationResponse:
 
     def custom_init(self, manual_entry_count: int):
         self.manual_response = [RentalInformationManualEntryResponse() for _ in range(manual_entry_count)]
+
+    def get_all(self) -> dict:
+        d = {}
+        for i, entry in enumerate(self.manual_response):
+            key = f"{i + 1}"
+            d[key] = entry.get_all()
+
+        return d

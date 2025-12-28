@@ -18,8 +18,3 @@ icon = "✍️"
 path = "pages/verify.py"
 name = "Verify & Submit"
 icon = "✅"
-
-[[pages]]
-path = "pages/test.py"
-name = "DEV"
-icon = "🧩"

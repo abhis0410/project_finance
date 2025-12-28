@@ -71,16 +71,16 @@ class EmployerInformation:
 
     @staticmethod
     def _get_file_upload_entry(index: int):
-        form = FileInput(
-            name=f"t4_slip_{index}",
-            label=f"Upload T4 Slip for Employer",
-            key_prefix=f"{index}",
-            allowed_types=["pdf"],
-            required=True,
-            help_text="Please upload a PDF copy of your T4 slip.",
-            multiple=False,
-        )
-        return form
+        # form = FileInput(
+        #     name=f"t4_slip_{index}",
+        #     label=f"Upload T4 Slip for Employer",
+        #     key_prefix=f"{index}",
+        #     allowed_types=["pdf"],
+        #     required=True,
+        #     help_text="Please upload a PDF copy of your T4 slip.",
+        #     multiple=False,
+        # )
+        # return form
 
 
     def _process(self, index, is_manual_entry: bool):

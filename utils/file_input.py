@@ -31,6 +31,7 @@ class FileInput:
             self,
             name: str,
             label: str,
+            context_help_string: str,
             key_prefix: str,
             allowed_types: List[str],
             required: bool = False,
@@ -39,6 +40,7 @@ class FileInput:
     ):
         self.name = name
         self.label = label
+        self.context_help_string = context_help_string
         self.key_prefix = key_prefix
         self.allowed_types = allowed_types
         self.required = required
@@ -46,8 +48,10 @@ class FileInput:
         self.multiple = multiple
 
     def render(self):
-        key = f"{self.key_prefix}_{self.name}"
+        st.caption(self.context_help_string)
+        context = st.text_input("Context", value="" or "", key=f"{self.key_prefix}_context")
 
+        key = f"{self.key_prefix}_{self.name}"
         files = st.file_uploader(
             self.label,
             type=FileType.extensions(self.allowed_types),
@@ -61,4 +65,4 @@ class FileInput:
         if self.required and not files:
             st.error("This file is required.")
 
-        return files
+        return context, files

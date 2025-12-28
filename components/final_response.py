@@ -3,6 +3,8 @@ from components.personal_information import personal_information_form
 import streamlit as st
 from typing import Dict, Optional, Any
 
+from utils.field import StreamlitFieldType, StreamlitField
+
 
 class FinalResponse:
 
@@ -33,7 +35,7 @@ class FinalResponse:
         self.employer_form = form
 
     @staticmethod
-    def _render_form(title: str, form: list):
+    def _render_form(title: str, form: list[StreamlitField]):
         d = {}
         with st.container(border=True):
             st.title(title.replace("_", " ").title())

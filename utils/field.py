@@ -37,22 +37,22 @@ class StreamlitField:
     def render(self) -> Any:
         key = f"{self.key_prefix}_{self.name}"
 
-        if self.field_type == FieldType.STRING:
+        if self.field_type == StreamlitFieldType.STRING:
             value = st.text_input(self.label, value=self.default or "", key=key)
 
-        elif self.field_type == FieldType.INT:
+        elif self.field_type == StreamlitFieldType.INT:
             value = st.number_input(self.label, value=self.default or 0, step=1, key=key)
 
-        elif self.field_type == FieldType.DOUBLE:
+        elif self.field_type == StreamlitFieldType.DOUBLE:
             value = st.number_input(self.label, value=self.default or 0.0, key=key)
 
-        elif self.field_type == FieldType.DATE:
+        elif self.field_type == StreamlitFieldType.DATE:
             value = st.date_input(self.label, value=self.default, key=key)
 
-        elif self.field_type == FieldType.SELECT:
+        elif self.field_type == StreamlitFieldType.SELECT:
             value = st.selectbox(self.label, self.options or [], key=key)
 
-        elif self.field_type == FieldType.BOOLEAN:
+        elif self.field_type == StreamlitFieldType.BOOLEAN:
             value = st.checkbox(self.label, value=bool(self.default), key=key)
 
         else:

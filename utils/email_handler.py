@@ -2,6 +2,9 @@ import smtplib
 from email.message import EmailMessage
 import streamlit as st
 
+from utils.constants import ContactInfo
+
+
 class EmailHandler:
     smtp_server = "smtp.gmail.com"
     smtp_port = 587
@@ -18,6 +21,7 @@ class EmailHandler:
         msg["From"] = self.email_id
         msg["To"] = to_email
         msg["Subject"] = subject
+        msg["Cc"] = ContactInfo.EMAIL
 
         if html_body:
             msg.add_alternative(html_body, subtype="html")

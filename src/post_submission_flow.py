@@ -18,7 +18,7 @@ class PostSubmissionFlow:
 
     def _get_html_body(self):
         d = self.final_form_response.get_dict()
-        return dict_to_email_html(d)
+        return dict_to_email_html(d, title="Tax Submission Details")
 
     def _get_attached_files(self, d, files=None):
         if files is None:

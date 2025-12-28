@@ -5,7 +5,6 @@ from streamlit.runtime.uploaded_file_manager import UploadedFile
 def render_dict(d: dict, title: str, level: int = 0):
     """Render a dictionary in a clean, boxed layout."""
     if not d:
-        st.caption("No data available")
         return
 
     with st.container(border=True):
@@ -23,7 +22,7 @@ def render_dict(d: dict, title: str, level: int = 0):
                 st.markdown(f"**{key.replace('_', ' ').title()}**")
             with col_val:
                 if type(value) is UploadedFile:
-                    st.write("Uploaded File....")
+                    st.write(value.name)
                     continue
 
                 st.write(value)

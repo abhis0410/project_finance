@@ -50,6 +50,9 @@ class FinalForm:
 
     def _render_employment_information(self):
         meta_inputs = self.custom_form_response.employment_config
+        if not meta_inputs.enabled.value:
+            return
+
         conf = self.final_form_response.employment_information_response
         conf.custom_init(
             manual_entry_count=meta_inputs.manual_count.value,
@@ -76,7 +79,24 @@ class FinalForm:
             index += 1
 
     def _render_additional_income_information(self):
-        pass
+        meta_inputs = self.custom_form_response.additional_income_config
+
+        if not meta_inputs.enabled.value:
+            return
+
+        conf = self.final_form_response.additional_income_information_response
+        conf.custom_init(
+            upload_entry_count=meta_inputs.income_count.value
+        )
+        index = 0
+        for x in conf.uploaded_response:
+            title = f"addition_income_{index+1}"
+            d = self.__render_file_upload_form(
+                title,
+                x.get_streamlit_fields(title)
+            )
+            x.setter(**d)
+            index += 1
 
     def _render_tuition_credits_information(self):
         meta_inputs = self.custom_form_response.tuition_config
@@ -86,7 +106,6 @@ class FinalForm:
         )
         title = "tuition_credits_information"
         if meta_inputs.mode.value == "manual":
-
             d = self.__render_single_form(
                 title,
                 conf.response_manual.get_streamlit_fields(title)
@@ -94,7 +113,6 @@ class FinalForm:
             conf.response_manual.setter(**d)
 
         elif meta_inputs.mode.value == "upload":
-            title = "tuition_credits_information_uploaded_entry"
             d = self.__render_file_upload_form(
                 title,
                 conf.response_uploaded.get_streamlit_fields(title)

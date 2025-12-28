@@ -35,6 +35,9 @@ class AdditionalIncomeUploadedResponse(UploadedEntryResponse):
 class AdditionalIncomeResponse:
     uploaded_response: List[AdditionalIncomeUploadedResponse]  # Streamlit UploadedFile
 
+    def __init__(self):
+        self.uploaded_response = []
+
     def custom_init(self, upload_entry_count: int):
         self.uploaded_response = [AdditionalIncomeUploadedResponse() for _ in range(upload_entry_count)]
 

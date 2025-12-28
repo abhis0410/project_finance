@@ -52,7 +52,7 @@ class PersonalInformationResponse(ManualEntryResponse):
                 self.date_of_birth.title,
                 StreamlitFieldType.DATE,
                 key_prefix,
-                default=date(1990, 1, 1),
+                default=date(2000, 1, 1),
             ),
             "province": StreamlitField(
                 "province",

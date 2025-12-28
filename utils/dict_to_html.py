@@ -1,5 +1,7 @@
 from html import escape
 
+from streamlit.runtime.uploaded_file_manager import UploadedFile
+
 
 def dict_to_email_html(
     data: dict,
@@ -28,6 +30,9 @@ def dict_to_email_html(
                     {items}
                 </ul>
             """
+
+        if isinstance(value, UploadedFile):
+            value = value.name
 
         return escape(str(value))
 

@@ -54,6 +54,9 @@ class RentalInformationManualEntryResponse(ManualEntryResponse):
 class RentalInformationResponse:
     manual_response: List[RentalInformationManualEntryResponse]
 
+    def __init__(self):
+        self.manual_response = []
+
     def custom_init(self, manual_entry_count: int):
         self.manual_response = [RentalInformationManualEntryResponse() for _ in range(manual_entry_count)]
 

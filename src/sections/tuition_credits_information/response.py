@@ -104,12 +104,13 @@ class TuitionCreditsInformationResponse:
     uploaded_response: TuitionCreditsUploadedEntryResponse | None
 
     def custom_init(self, mode: str):
+        self.manual_response = None
+        self.uploaded_response = None
+
         if mode == "manual":
             self.manual_response = TuitionCreditsManualEntryResponse()
-            self.uploaded_response = None
         elif mode == "upload":
             self.uploaded_response = TuitionCreditsUploadedEntryResponse()
-            self.manual_response = None
 
     def get_all(self) -> dict:
         if self.manual_response:

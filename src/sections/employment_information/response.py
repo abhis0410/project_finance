@@ -2,7 +2,7 @@ from streamlit.runtime.uploaded_file_manager import UploadedFile
 
 from src.field_value import StringField, DoubleField
 from utils.constants import Strings
-from utils.field import StreamlitField, StreamlitFieldType
+from utils.streamlit_field import StreamlitField, StreamlitFieldType
 from typing import List, Any
 
 from utils.file_input import FileInput

@@ -2,7 +2,7 @@ from datetime import date
 from typing import Dict, Any
 
 from src.field_value import StringField
-from utils.field import StreamlitField, StreamlitFieldType
+from utils.streamlit_field import StreamlitField, StreamlitFieldType
 
 
 class PersonalInformationResponse:

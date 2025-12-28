@@ -1,7 +1,7 @@
 from typing import List
 
 from src.field_value import StringField, IntField, DoubleField
-from utils.field import StreamlitFieldType, StreamlitField
+from utils.streamlit_field import StreamlitFieldType, StreamlitField
 
 
 class RentalInformationManualEntryResponse:
